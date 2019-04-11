@@ -1,40 +1,56 @@
 //
 //  main.cpp
-//  midterm question 2
+//  midterm question 3
 //
 //  Created by Gregory Francois on 2/19/19.
 //  Copyright © 2019 Gregory Francois. All rights reserved.
 //
 
 #include <iostream>
-#include <ctime>
-#include <cstdlib>
-#include <string>
 using namespace std;
 
 int main()
 {
-    // Initialize the random seed generator
-    // Cast the random generator as an unsigned int to remove compiler warning
-    srand((unsigned int)time(0));
     
-    // Generates a two-digit random number
-    // Assign random number to variable
-    int randNumOne = 10 + rand() % 90;
+    // Initialize character variable for user input
+    char userCharacter = '0';
+    // Prompt user to enter a single character
+    cout << "Enter a single character (4, f, B, etc.): " << endl;
+    // Store user input in the initialized variable
+    cin >> userCharacter;
     
-    // Convert random number integer variable to string variable
-    string randStr = to_string(randNumOne);
+    // If-Else statement to return whether the entered character
+    // is uppercase, lowercase, an integer or some other character
     
-    // Check if individual digits are the same or not
-    // print out respective statements
-    if ( randStr.at(0) == randStr.at(1) )
-        cout << "The random number is: " << randStr << ". The two individual digits are the same."<< endl;
+    if (isalnum(userCharacter) && isdigit(userCharacter))
+        cout << "You entered " << userCharacter << ". It is a numerical character." << endl;
+    else if (isalnum(userCharacter) && isupper(userCharacter))
+        cout << "You entered " << userCharacter << ". It is a uppercase aplhabetical character." << endl;
+    else if (isalnum(userCharacter) && islower(userCharacter))
+        cout << "You entered " << userCharacter << ". It is a lowercase aplhabetical character." << endl;
     else
-        cout << "The random number is: " << randStr << ". The two individual digits are not the same." << endl;
-    
+        cout << "You entered " << userCharacter << ". It is some other character" << endl;
     
     return 0;
 }
 
-// The random number is: 66. The two individual digits are the same. Program ended with exit code: 0
-// The random number is: 27. The two individual digits are not the same. Program ended with exit code: 0
+//Enter a single character (4, f, B, etc.):
+//P
+//You entered P. It is a uppercase aplhabetical character.
+
+//Enter a single character (4, f, B, etc.):
+//u
+//You entered u. It is a lowercase aplhabetical character.
+//Program ended with exit code: 0
+
+//Enter a single character (4, f, B, etc.):
+//5
+//You entered 5. It is a numerical character.
+//Program ended with exit code: 0
+
+//Enter a single character (4, f, B, etc.):
+//]
+//You entered ]. It is some other character
+//Program ended with exit code: 0
+
+
