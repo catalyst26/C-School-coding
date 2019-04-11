@@ -1,32 +1,28 @@
 //
 //  main.cpp
-//  MemBuf
+//  pointers
 //
-//  Created by Gregory Francois on 3/30/19.
+//  Created by Gregory Francois on 3/14/19.
 //  Copyright © 2019 Gregory Francois. All rights reserved.
 //
 
-#include "MemBuf.h"
 #include <iostream>
+#include <string>
 
-
-int main()
-{
-    using namespace CSC252FINAL;
+int main() {
+    
+    using std::string;
+    string *ps = new string("abcd");
     
     using std::cout;
-    // ix.a
-    MemBuf mo(100);
-    // ix.b
-    MemBuf mo2 = *new MemBuf(mo);
-    // ix.c
-    mo.operator=(mo2);
-    // ix.d
-    cout << mo2.sizeMPos() << "\n";
-    // ix.e
-    cout << mo2.getMCapacity() << "\n";
+    cout << "The first 3 characters are : " << (*ps).substr(0, 3) << "\n";
+    cout << "The length is " << (*ps).length() << "\n";
     
+    cout << "The first 3 characters are : " << ps->substr(0, 3) << "\n";
+    cout << "The length is " << ps->length() << "\n";
     
+    delete ps;
     
     return 0;
+    
 }
