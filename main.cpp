@@ -1,70 +1,75 @@
 //
 //  main.cpp
-//  addTwoMatrices8_5
+//  computeDeviation7_11
 //
 //  Created by Gregory Francois on 3/1/19.
 //  Copyright © 2019 Gregory Francois. All rights reserved.
 //
 
 #include <iostream>
-#include <iomanip>
+#include <cmath>
+
 using namespace std;
 
-// Declare array size and function
-const int N = 3;
-void addMatrix(const double a[][N], const double b[][N], double c[][N]){
+// Compute the mean of an array of double values
+double mean(const double x[] , int size , double y){
     
-    // For loop to print out the individual elements in the array
-    // After summing the two matrices
-    for (int row = 0; row < 3; row++) {
-        for (int column = 0; column < 3; column++) {
-            // Output result when function is called
-            cout << c[row][column] << " "; }
-        cout << endl;
+    // Declare value to store mean
+    double meanResult = y / size ;
+    
+    // Return mean when function is called
+    return meanResult;
+};
+// Compute the deviation of double values
+double deviation(const double x[] , int size , double y){
+    
+    // Declare variable to hold summation of discriminant numerator
+    double total = 0.0;
+    // Loop to sum each element subtracted by the mean, then square each iteration
+    // and hold that result in total variable
+    for (int i = 0; i < size; i++) {
+        total += pow(x[i] - y, 2.0) ;
     }
+    // Declare variable for discriminant denominator
+    double discrDenom = size - 1.0;
+    // Declare variable to compute value of discriminant
+    double discr = total / discrDenom ;
+    // Declare variable to compute standard deviation
+    double deviationResult = sqrt(discr);
+    
+    // Return standard deviation when function is called
+    return deviationResult;
 };
 
 
-int main() {
+int main()
+{
     
-    // Declare and initialize 2 dimensional array
-    const int ROW_SIZE = 3;
-    const int COLUMN_SIZE = 3;
-    double matrixOne[ROW_SIZE][COLUMN_SIZE];
-    double matrixTwo[ROW_SIZE][COLUMN_SIZE];
-    // Prompt user to enter first matrix
-    cout << "Enter matrix 1: " << endl;
-    // For loop to fill up the rows and colums of the array
-    // After each iteration
-    for (int i = 0; i < ROW_SIZE; i++)
-        for (int j = 0; j < COLUMN_SIZE; j++){
-            // Store user input in array
-            cin >> matrixOne[i][j];
-        }
-    // Prompt user to enter second matrix
-    cout << "Enter matrix 2: " << endl;
-    for (int i = 0; i < ROW_SIZE; i++)
-        for (int j = 0; j < COLUMN_SIZE; j++){
-            cin >> matrixTwo[i][j];
-        }
     
-    // Declare and initialize array to hold sum of
-    // The first and second arrays
-    const int X_SIZE = 3;
-    const int Y_SIZE = 3;
-    double total[X_SIZE][Y_SIZE];
-    // For loop to add each element in both arrays
-    // after each iteration and store the total
-    // in an array called total
-    for (int i = 0; i < X_SIZE; i++) {
-        for (int j = 0; j < Y_SIZE; j++) {
-            total[i][j] = matrixOne[i][j] + matrixTwo[i][j];
-        }
+    // Declare array
+    const int NUMBER_OF_ELEMENTS = 10;
+    double numbers[NUMBER_OF_ELEMENTS];
+    // Declare variable to hold sum to be divided by the size
+    // To get the mean or average
+    double sum = 0;
+    
+    // Prompt user to enter ten numbers
+    cout << "Enter ten numbers: " << endl;
+    
+    // Loop to walk the array, summing the elements
+    // And storing the value in sum variable
+    for (int i = 0; i < NUMBER_OF_ELEMENTS; i++) {
+        cin >> numbers[i];
+        sum += numbers[i];
     }
+    // Created variable to store index of a number in array variable y;
+    // Created variable to store mean of array to pass to function
+    double arrayMean = sum / NUMBER_OF_ELEMENTS;
     
-    // Call function to output sum of matrices to the user
-    cout << "The addition of the matrices is " << endl;
-    addMatrix(matrixOne, matrixTwo, total);
+    // Call functions to output mean and SD to user
+    cout << "The mean is " << mean(numbers, NUMBER_OF_ELEMENTS, sum) << endl;
+    cout << "The standard deviation is " << deviation(numbers, NUMBER_OF_ELEMENTS, arrayMean) << endl;
+    
     
     
     return 0;
