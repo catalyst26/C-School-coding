@@ -1,28 +1,30 @@
 //
 //  main.cpp
-//  pointers
+//  arraymax
 //
-//  Created by Gregory Francois on 3/14/19.
+//  Created by Gregory Francois on 7/27/19.
 //  Copyright © 2019 Gregory Francois. All rights reserved.
 //
 
 #include <iostream>
-#include <string>
+using namespace std;
+
+int arrayMax(int A[], int n)
+{
+    int currMax = A[0];
+    for (int i =0; i < n - 1; i++)
+    {
+        if (currMax < A[i])
+            currMax = A[i];
+    }
+    return currMax;
+};
 
 int main() {
     
-    using std::string;
-    string *ps = new string("abcd");
+    const int arrSize = 8;
+    int array[arrSize] = {65 , 35 ,67 , 89 , 325, 23, 53, 68};
     
-    using std::cout;
-    cout << "The first 3 characters are : " << (*ps).substr(0, 3) << "\n";
-    cout << "The length is " << (*ps).length() << "\n";
-    
-    cout << "The first 3 characters are : " << ps->substr(0, 3) << "\n";
-    cout << "The length is " << ps->length() << "\n";
-    
-    delete ps;
-    
+    cout << "The maximum number in the array is: " << arrayMax(array, arrSize) << "\n";
     return 0;
-    
 }
